@@ -14,8 +14,8 @@ using namespace std;
 
 int main()
 {
-	Renderer r;
-	r.init(Size2D(800, 600), "sdlapp");
+	//Renderer r;
+	//r.init(Size2D(800, 600), "sdlapp");
 	Animation fsm;
 	int i = 0;
 	while (true)
@@ -24,14 +24,28 @@ int main()
 		{
 			fsm.jumping();
 			std::this_thread::sleep_for(std::chrono::microseconds(1000));
-			i =1 ;
+			i  ++;
 		}
-		else
+		else if(i ==1)
+		{
+			fsm.idle();
+			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+			i ++;
+		}
+		else if(i ==2)
 		{
 			fsm.climbing();
 			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-			i= 0;
+			i++;
+
 		}
+		else if (i ==3)
+		{
+			fsm.idle();
+			std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+			i = 0;
+		}
+
 	}
 	//run the game loop
 
